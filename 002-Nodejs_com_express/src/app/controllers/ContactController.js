@@ -8,8 +8,17 @@ class ContactController {
     response.json(contacts);
   }
 
-  show() {
+  async show(request, response) {
     // mostrar um registro
+    const { id } = request.params;
+    const contact = await ContactsRepository.findById(id);
+
+    if (!contact) {
+      // 404: not found
+      return response.status(404).json({ error: 'User Not Found' });
+    }
+
+    response.json(contact);
   }
 
   store() {
@@ -20,8 +29,19 @@ class ContactController {
     // editar um registro
   }
 
-  delet() {
+  async delet(request, response) {
     // deletar um registro
+    const { id } = request.params;
+    const contact = await ContactsRepository.findById(id);
+
+    if (!contact) {
+      // 404: not found
+      return response.status(404).json({ error: 'User Not Found' });
+    }
+
+    await ContactsRepository.delete(id);
+    // 204: é o código 200 mas sem corpo
+    response.sendStatus(204);
   }
 }
 
