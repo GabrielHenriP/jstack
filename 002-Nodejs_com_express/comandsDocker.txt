@@ -33,4 +33,5 @@ $ docker container rm pg
 // deletar uma imagem
 $ docker rmi postgres
 
-
+// acessar o container de modo iterativa
+$ docker exec -it pg bash
