@@ -21,7 +21,7 @@ $ docker container ls ou $ docker ps
 // parar de executar um container - pode ser usado ou o nome do container ou o ID
 $ docker stop pg
 
-// parar executar um dos containers criados - nome ou ID
+// executar um dos containers criados - nome ou ID
 $ docker start pg
 
 - Antes de apagar uma imagem, é necessário parar e deletar o container que esteja usando essa imagem
