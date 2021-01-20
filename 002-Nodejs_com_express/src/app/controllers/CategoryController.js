@@ -25,6 +25,15 @@ class CategoryController {
     response.json(category);
   }
 
+  async update(request, response) {
+    const { id } = request.params;
+    const { name } = request.body;
+
+    const category = await CategoriesRepository.update(id, name);
+
+    return response.json(category);
+  }
+
   async delete(request, response) {
     const { id } = request.params;
 
