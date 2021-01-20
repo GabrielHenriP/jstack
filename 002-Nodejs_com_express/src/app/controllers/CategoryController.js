@@ -1,3 +1,4 @@
+const { response } = require('express');
 const CategoriesRepository = require('../repositories/CategoriesRepository');
 
 class CategoryController {
@@ -5,6 +6,12 @@ class CategoryController {
     const categories = await CategoriesRepository.findAll();
 
     response.json(categories);
+  }
+
+  async show(request, response) {
+    const { id } = request.params;
+    const category = await CategoriesRepository.findById(id);
+    return response.json(category);
   }
 
   async store(request, response) {
@@ -16,6 +23,14 @@ class CategoryController {
 
     const category = await CategoriesRepository.create({ name });
     response.json(category);
+  }
+
+  async delete(request, response) {
+    const { id } = request.params;
+
+    await CategoriesRepository.delete(id);
+
+    return response.json({ message: 'Deletado com sucesso' });
   }
 }
 
